@@ -16,7 +16,17 @@ const SellerSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-    }
+    },
+    approvalstatus: {
+        type: Boolean,
+        default: false
+    },
+    instagramurl: {
+        type: String
+    },
+    youtubeurl: {
+        type: String
+    },
 }, {
     timestamps: {
         createdAt: 'created_at',
