@@ -27,9 +27,9 @@ const BikeShema = new mongoose.Schema({
         type: String,
         required: true
     },
-    approvalbikestatus:{
-        type:Boolean,
-        default:false
+    approvalbikestatus: {
+        type: Boolean,
+        default: false
     }
 
 },

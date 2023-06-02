@@ -6,6 +6,7 @@ import routeradmincategory from './database/admindatabase/categorys/index.js';
 import routerallsellers from './database/admindatabase/allsellers/index.js';
 import BikeRouter from './database/sellerdatabase/createbikedatabase/index.js';
 import approvalshoprouter from './database/admindatabase/shopapprovaladmin/index.js';
+import Subscriberouter from './database/admindatabase/cms/subscribeusers/index.js';
 
 
 const router = express.Router();
@@ -13,7 +14,12 @@ const router = express.Router();
 router.use("/auth", routeradmin);
 router.use("/admin", MiddlewareCheck, routeradmincategory);
 router.use("/admin", MiddlewareCheck, routerallsellers);
-router.use("/admin", MiddlewareCheck,approvalshoprouter );
+router.use("/admin", MiddlewareCheck, approvalshoprouter);
+
+// cms admin
+router.use("/admin", MiddlewareCheck, Subscriberouter);
+
+
 
 
 
