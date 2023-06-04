@@ -29,4 +29,4 @@ const subscribeShema = new mongoose.Schema({
     })
 
 
-    export default mongoose.model("subscribeadmin",subscribeShema);
+export default mongoose.model("subscribeadmin", subscribeShema);

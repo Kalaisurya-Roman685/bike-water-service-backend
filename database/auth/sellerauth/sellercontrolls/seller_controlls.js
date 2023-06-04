@@ -4,7 +4,7 @@ import seller_schema from "../sellermodel/seller_schema.js";
 
 export const SellerRegister = async (req, res) => {
 
-    const { username, email, password, role } = req.body;
+    const { username, email, password, role,contactno,workers,bankingdetails } = req.body;
     try {
 
         const existemail = await seller_schema.findOne({ email });
@@ -16,14 +16,17 @@ export const SellerRegister = async (req, res) => {
             username,
             email,
             password: hashed,
-            role: "seller"
+            role: "seller",
+            contactno,
+            workers,
+            bankingdetails
         })
 
         await createUser.save();
         res.status(201).json(createUser)
     }
     catch (err) {
-        res.status(404).json("Register Error in Admin");
+        res.status(404).json("Register Error in Seller");
     }
 
 }

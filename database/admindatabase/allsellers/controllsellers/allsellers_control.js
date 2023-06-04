@@ -31,7 +31,7 @@ export const AdminApprovalseller = async (req, res) => {
 
         if (req.body.userId == req.userId) {
 
-            await seller_schema.findByIdAndUpdate(req.body.sellerid, { approvalstatus: true }, { new: true }).then((data) => {
+            await seller_schema.findByIdAndUpdate(req.body.sellerid, { approvalstatus: 2 }, { new: true }).then((data) => {
                 res.status(200).json("Seller Approval Successfully");
             }).catch((err) => {
                 res.status(404).json(err)
@@ -56,7 +56,7 @@ export const AdminApprovalRejectseller = async (req, res) => {
 
         if (req.body.userId == req.userId) {
 
-            await seller_schema.findByIdAndUpdate(req.body.sellerid, { approvalstatus: false }, { new: true }).then((data) => {
+            await seller_schema.findByIdAndUpdate(req.body.sellerid, { approvalstatus: 3 }, { new: true }).then((data) => {
                 res.status(200).json("Seller Rejected Successfully");
             }).catch((err) => {
                 res.status(404).json(err)
