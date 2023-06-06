@@ -1,9 +1,11 @@
 import seller_schema from "../../../auth/sellerauth/sellermodel/seller_schema.js"
 
 export const AllSellerslist = async (req, res) => {
+
+    console.log(req.body.userId,"kla")
     try {
 
-        if (req.body.userId == req.userId) {
+        if (req.body.userId === req.userId) {
             const allserllsers = await seller_schema.find().then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {

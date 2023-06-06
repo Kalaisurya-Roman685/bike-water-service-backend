@@ -7,6 +7,7 @@ import routerallsellers from './database/admindatabase/allsellers/index.js';
 import BikeRouter from './database/sellerdatabase/createbikedatabase/index.js';
 import approvalshoprouter from './database/admindatabase/shopapprovaladmin/index.js';
 import Subscriberouter from './database/admindatabase/cms/subscribeusers/index.js';
+import routersellerworkers from './database/sellerdatabase/sellerworksers/index.js';
 
 
 const router = express.Router();
@@ -26,6 +27,8 @@ router.use("/admin", MiddlewareCheck, Subscriberouter);
 // seller
 
 router.use("/auth", routerseller);
+router.use("/workers", MiddlewareCheck,routersellerworkers);
+
 router.use("/bike", MiddlewareCheck, BikeRouter);
 
 

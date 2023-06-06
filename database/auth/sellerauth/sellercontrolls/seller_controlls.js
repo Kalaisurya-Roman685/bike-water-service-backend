@@ -4,7 +4,7 @@ import seller_schema from "../sellermodel/seller_schema.js";
 
 export const SellerRegister = async (req, res) => {
 
-    const { username, email, password, role,contactno,workers,bankingdetails } = req.body;
+    const { username, email, password, role, contactno, workers, bankingdetails } = req.body;
     try {
 
         const existemail = await seller_schema.findOne({ email });
