@@ -4,7 +4,7 @@ import seller_schema from "../sellermodel/seller_schema.js";
 
 export const SellerRegister = async (req, res) => {
 
-    const { username, email, password, role, contactno, workers, bankingdetails } = req.body;
+    const { username, email, password, role, contactno, workers } = req.body;
     try {
 
         const existemail = await seller_schema.findOne({ email });
@@ -18,8 +18,7 @@ export const SellerRegister = async (req, res) => {
             password: hashed,
             role: "seller",
             contactno,
-            workers,
-            bankingdetails
+            workers
         })
 
         await createUser.save();
@@ -43,8 +42,6 @@ export const SellerLogin = async (req, res) => {
         if (existemail) {
             const hashed = await PasswordCheck(password, existemail?.password);
             if (hashed) {
-
-
                 const Tokens = await Tokengenrate(existemail?._id)
                 const { password, ...otherdetails } = existemail._doc;
                 const response = {
@@ -52,22 +49,17 @@ export const SellerLogin = async (req, res) => {
                     seller: otherdetails
                 }
                 res.status(200).json(response)
-
-
             }
             else {
-
                 res.status(404).json("Password Not Matched")
             }
         }
         else {
             return res.status(404).json("User Not Found");
         }
-
-
     }
     catch (err) {
-        res.status(404).json("Register Error")
+        res.status(404).json("Login Error")
     }
 
 }
@@ -75,3 +67,94 @@ export const SellerLogin = async (req, res) => {
 
 
 
+// user profile update
+
+
+export const SellerProfileUpdate = async (req, res) => {
+    const {
+        username,
+        email,
+        password,
+        role,
+        approvalstatus,
+        instagramurl,
+        youtubeurl,
+        bankingdetails,
+        contactno,
+        altternateContactno,
+        profiledescription,
+        pincode,
+        state,
+        country,
+        location,
+        houseno,
+        bankname,
+        accountno,
+        ifccode,
+        branchname,
+        subscribeName
+    } = req.body;
+
+    try {
+
+        if (req.body.userId === req.userId) {
+
+            const updateprofile = await seller_schema.findByIdAndUpdate(req.body.userId, req.body, { new: true }).then((data) => {
+                res.status(200).json("Onbaord completed")
+            }).catch((err) => {
+                res.status(404).json(err)
+
+            })
+        }
+    }
+    catch (err) {
+        res.status(404).json("Onboard user Error")
+
+    }
+}
+
+// get profile
+
+export const SellerProfileget = async (req, res) => {
+    const {
+        username,
+        email,
+        password,
+        role,
+        approvalstatus,
+        instagramurl,
+        youtubeurl,
+        bankingdetails,
+        contactno,
+        altternateContactno,
+        profiledescription,
+        pincode,
+        state,
+        country,
+        location,
+        houseno,
+        bankname,
+        accountno,
+        ifccode,
+        branchname,
+        subscribeName
+    } = req.body;
+
+
+
+    try {
+
+        // if (req.body.userId === req.userId) {
+        const updateprofile = await seller_schema.findById(req.body.userId).then((data) => {
+            res.status(200).json(data)
+        }).catch((err) => {
+            res.status(404).json(err)
+
+        })
+        // }
+    }
+    catch (err) {
+        res.status(404).json("Onboard user Error")
+
+    }
+}

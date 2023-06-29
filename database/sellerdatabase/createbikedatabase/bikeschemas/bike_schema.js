@@ -28,8 +28,8 @@ const BikeShema = new mongoose.Schema({
         required: true
     },
     approvalbikestatus: {
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 1
     }
 
 },

@@ -36,9 +36,6 @@ const SellerSchema = new mongoose.Schema({
     altternateContactno: {
         type: String,
     },
-    address: {
-        type: String
-    },
     profiledescription: {
         type: String,
     },
@@ -48,8 +45,32 @@ const SellerSchema = new mongoose.Schema({
     state: {
         type: String,
     },
+    country: {
+        type: String,
+    },
     location: {
         type: String
+    },
+    houseno: {
+        type: Number
+    },
+    bankname: {
+        type: String,
+    },
+    accountno: {
+        type: String,
+    },
+    ifccode: {
+        type: String
+    },
+    branchname: {
+        type: String
+    },
+    subscribeName: {
+        type: String
+    },
+    streetaddress:{
+        type:String
     }
 }, {
     timestamps: {

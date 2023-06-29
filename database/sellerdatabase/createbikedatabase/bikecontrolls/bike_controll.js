@@ -23,19 +23,19 @@ export const BikeCreate = async (req, res) => {
             BikeType
         })
 
-        if (userId === req.userId) {
-            await CreateBikesshop.save().then((data) => {
+        // if (userId === req.userId) {
+        await CreateBikesshop.save().then((data) => {
 
-                res.status(201).json(data);
+            res.status(201).json(data);
 
-            }).catch((err) => {
-                res.status(404).json(err);
+        }).catch((err) => {
+            res.status(404).json(err);
 
-            })
-        }
-        else {
-            res.status(404).json("Unauthorized User or User id Not Matched")
-        }
+        })
+        // }
+        // else {
+        //     res.status(404).json("Unauthorized User or User id Not Matched")
+        // }
     }
     catch (err) {
 
@@ -88,20 +88,17 @@ export const BikeAllshops = async (req, res) => {
     try {
 
 
-        if (req.body.userId === req.userId) {
 
-            await bike_schema.find().then((data) => {
 
-                res.status(201).json(data);
+        await bike_schema.find().then((data) => {
 
-            }).catch((err) => {
-                res.status(404).json(err);
+            res.status(201).json(data);
 
-            })
-        }
-        else {
-            res.status(404).json("Unauthorized User or User id Not Matched")
-        }
+        }).catch((err) => {
+            res.status(404).json(err);
+
+        })
+
     }
     catch (err) {
 

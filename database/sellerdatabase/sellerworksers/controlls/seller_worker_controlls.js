@@ -81,6 +81,38 @@ export const Editworkers = async (req, res) => {
 }
 
 
+// delete
+
+
+export const Deleteworkers = async (req, res) => {
+
+    try {
+
+        console.log(req.userId,"req.userId")
+
+        console.log(req.body.userId,"req.body.userId")
+
+
+        if (req.body.userId === req.userId) {
+            const update = await seller_worker_shema.findByIdAndDelete(req.body.workerid).then((data) => {
+                res.status(200).json("Deleted Workers")
+
+            }).catch((err) => {
+                res.status(404).json("Error This Page")
+
+            })
+        }
+        else {
+            res.status(404).json("Unauthorized User");
+        }
+    }
+    catch (err) {
+        res.status(404).json("Worker Error")
+
+    }
+}
+
+
 // single data
 
 export const Singleworkers = async (req, res) => {

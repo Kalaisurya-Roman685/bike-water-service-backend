@@ -7,15 +7,17 @@ export const createSubscribe = async (req, res) => {
         price,
         description,
         limitshopcount, userId } = req.body;
+
+        console.log(req.body,"kalai")
     try {
         if (userId === req.userId) {
-            const createsubscribe = await subscribe_shema({
+            const createsubscribes = await subscribe_shema({
                 planName,
                 price,
                 description,
                 limitshopcount, userId
             })
-            await createSubscribe.save().then((data) => {
+            await createsubscribes.save().then((data) => {
                 res.status(201).json(data);
             }).catch((err) => {
                 res.status(404).json(err);
@@ -26,6 +28,7 @@ export const createSubscribe = async (req, res) => {
         }
     }
     catch (err) {
+        res.status(404).json(err)
 
     }
 }
@@ -48,6 +51,7 @@ export const editSubscribe = async (req, res) => {
         }
     }
     catch (err) {
+        res.status(404).json(err)
 
     }
 }
@@ -69,6 +73,27 @@ export const deleteSubscribe = async (req, res) => {
         }
     }
     catch (err) {
+        res.status(404).json(err)
+
+    }
+}
+
+
+// get all subscribe
+
+export const getallSubscribe = async (req, res) => {
+   
+    try {
+
+        const createsubscribe = await subscribe_shema.find().then((data) => {
+            res.status(200).json(data);
+        }).catch((err) => {
+            res.status(404).json(err);
+        })
+
+    }
+    catch (err) {
+        res.status(404).json(err)
 
     }
 }

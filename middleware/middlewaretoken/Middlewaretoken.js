@@ -8,7 +8,7 @@ export const MiddlewareCheck = async (req, res, next) => {
                 res.status(404).josn("something error token")
             }
             else {
-                console.log(res);
+
                 if (res?._id) {
                     req.userId = res?._id;
                     next();

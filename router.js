@@ -8,6 +8,11 @@ import BikeRouter from './database/sellerdatabase/createbikedatabase/index.js';
 import approvalshoprouter from './database/admindatabase/shopapprovaladmin/index.js';
 import Subscriberouter from './database/admindatabase/cms/subscribeusers/index.js';
 import routersellerworkers from './database/sellerdatabase/sellerworksers/index.js';
+import { SellerProfileUpdate, SellerProfileget } from './database/auth/sellerauth/sellercontrolls/seller_controlls.js';
+import routersample from './database/sellerdatabase/sampleserachdata/index.js';
+import comentrouter from './database/sellerdatabase/comments/index.js';
+import bikecreaterouter from './database/usersections/bikeusersnew/index.js';
+import bikecreaterouternew from './database/usersections/bikecreatenewone/index.js';
 
 
 const router = express.Router();
@@ -27,9 +32,24 @@ router.use("/admin", MiddlewareCheck, Subscriberouter);
 // seller
 
 router.use("/auth", routerseller);
-router.use("/workers", MiddlewareCheck,routersellerworkers);
+router.post("/profile/update", MiddlewareCheck, SellerProfileUpdate);
+router.post("/profile/get", MiddlewareCheck, SellerProfileget);
 
-router.use("/bike", MiddlewareCheck, BikeRouter);
+
+router.use("/workers", MiddlewareCheck, routersellerworkers);
+
+router.use("/bike", BikeRouter);
+router.use("/sample", routersample);
+router.use("/comment", comentrouter);
+
+// new apis sample check
+
+
+router.use("/b", bikecreaterouter)
+router.use("/bc",bikecreaterouternew )
+
+
+
 
 
 // enduser

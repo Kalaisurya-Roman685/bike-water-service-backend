@@ -4,11 +4,10 @@ import bike_schema from "../../../sellerdatabase/createbikedatabase/bikeschemas/
 
 export const ApprovalShopadmin = async (req, res) => {
     try {
-
         if (req.body.shopid) {
             if (req.body.userId === req.userId) {
                 await bike_schema.findByIdAndUpdate(req.body.shopid, {
-                    approvalbikestatus: true
+                    approvalbikestatus: 2
                 }, {
                     new: true
                 }).then((data) => {
@@ -40,7 +39,7 @@ export const RejectShopadmin = async (req, res) => {
         if (req.body.shopid) {
             if (req.body.userId === req.userId) {
                 await bike_schema.findByIdAndUpdate(req.body.shopid, {
-                    approvalbikestatus: false
+                    approvalbikestatus: 3
                 }, {
                     new: true
                 }).then((data) => {
